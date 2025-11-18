@@ -1,0 +1,19 @@
+POST http://localhost:4132/signup
+Content-Type: application/json
+
+{
+  "name": "juan",
+  "email": "juan@gmail.com",
+  "password": "juan.dev"
+}
+
+###
+
+POST http://localhost:4132/signin
+Content-Type: application/json
+
+{
+  "name": "juan",
+  "email": "juan@gmail.com",
+  "password": "juan.dev"  
+}
