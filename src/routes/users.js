@@ -24,14 +24,27 @@ export default async function userRoutes(server, opts) {
     if (!bcrypt.compareSync(data.password, user.rows[0].password)) return rep.code(401).send('wrong credentials')
     
     const payload = { id: user.rows[0].id, name: user.rows[0].name }
-    const token = server.jwt.sign(payload, { expiresIn: '1h' })
+    const token = server.jwt.sign(payload, { expiresIn: '10h' })
 
     rep.setCookie('token', token, {
       path: '/',
       secure: false,
       httpOnly: true
-    }).code(200).send('cookie sent')
+    }).code(200)
 
-    return rep.code(200).send('user logged in')
+    return rep.code(200).send({ token: token, message: 'user logged in' })
+  })
+
+  server.get('/profile', { preHandler: server.authenticate }, async (req, rep) => {
+    const data = req.user // name, email, bio
+    const user = await db.raw('select name, email, bio from users where id = ?', [data.id])
+    // the user's profile containing profile picture, name, email, option to change password, his latest/favorite tasks and notes
+
+    const tasks = await db.raw('SELECT t.name, t.description, t.status FROM tasks AS t INNER JOIN user_task AS UT on t.id = ut.task_id where ut.user_id = ?', [data.id])
+    const notes = await db.raw('SELECT n.name, n.description FROM notes AS n INNER JOIN user_note AS un ON n.id = un.note_id where un.user_id = ?', [data.id])
+
+    rep.code(200).send({ user: user.rows, tasks: tasks.rows, notes: notes.rows })
+    // i have name, id and email
+
   })
 }

@@ -17,3 +17,55 @@ Content-Type: application/json
   "email": "juan@gmail.com",
   "password": "juan.dev"  
 }
+
+
+### 
+GET http://localhost:4132/profile
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNkNjNjMjM4LWIxMTctNDY0MC1hYTVlLTFiNWFjYjVkYzkwNSIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzYzNTQ5ODcwLCJleHAiOjE3NjM1ODU4NzB9.FT5tM4AZJTSX5_sm1DMqASTex7DwHBRLNWhZl-w8cNQ
+
+
+###
+POST http://localhost:4132/task/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNkNjNjMjM4LWIxMTctNDY0MC1hYTVlLTFiNWFjYjVkYzkwNSIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzYzNTQ5ODcwLCJleHAiOjE3NjM1ODU4NzB9.FT5tM4AZJTSX5_sm1DMqASTex7DwHBRLNWhZl-w8cNQ
+
+{
+  "name": "Read book",
+  "description": "Harry Potter",
+  "status": "todo"
+}
+
+
+###
+POST http://localhost:4132/note/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNkNjNjMjM4LWIxMTctNDY0MC1hYTVlLTFiNWFjYjVkYzkwNSIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzYzNTQ5ODcwLCJleHAiOjE3NjM1ODU4NzB9.FT5tM4AZJTSX5_sm1DMqASTex7DwHBRLNWhZl-w8cNQ
+
+{
+  "name": "note2",
+  "description": "notenotentoe"
+}
+
+
+###
+PUT http://localhost:4132/task/update/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNkNjNjMjM4LWIxMTctNDY0MC1hYTVlLTFiNWFjYjVkYzkwNSIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzYzNTQ5ODcwLCJleHAiOjE3NjM1ODU4NzB9.FT5tM4AZJTSX5_sm1DMqASTex7DwHBRLNWhZl-w8cNQ
+
+{
+  "description": "task 1",
+  "name": "task id 1",
+  "status": "todo"
+}
+
+
+###
+PUT http://localhost:4132/note/update/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNkNjNjMjM4LWIxMTctNDY0MC1hYTVlLTFiNWFjYjVkYzkwNSIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzYzNTQ5ODcwLCJleHAiOjE3NjM1ODU4NzB9.FT5tM4AZJTSX5_sm1DMqASTex7DwHBRLNWhZl-w8cNQ
+
+{
+  "description": "then",
+  "name": "then"
+}
