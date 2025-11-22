@@ -1,0 +1,34 @@
+###
+POST http://localhost:4132/create/task
+#POST http://localhost:4132/create/itemType
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5Y2VkMTljLWJlMjMtNDBjZS05MDQyLTRhYzE2YTdiMDEyMCIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzYzNzMxNTIzLCJleHAiOjE3NjQwOTE1MjN9.Vor_CR0Hfp06fQLT7vDxQidivoFOxKNg7pzl8RK2NfY
+
+{
+  "name": "nice note",
+  "description": "note 2.0"
+}
+
+
+### 
+PUT http://localhost:4132/update/folder/4 
+# PUT http://localhost:4132/update/itemTable/itemId
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5Y2VkMTljLWJlMjMtNDBjZS05MDQyLTRhYzE2YTdiMDEyMCIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzYzNzMxNTIzLCJleHAiOjE3NjQwOTE1MjN9.Vor_CR0Hfp06fQLT7vDxQidivoFOxKNg7pzl8RK2NfY
+
+{
+  "name": "This is a cool folder"
+}
+
+#task -> name, desc, status
+#note -> name, desc
+#folder -> name, parent_id
+
+
+### 
+DELETE http://localhost:4132/delete/task/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNkNjNjMjM4LWIxMTctNDY0MC1hYTVlLTFiNWFjYjVkYzkwNSIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzYzNjczOTk3LCJleHAiOjE3NjQwMzM5OTd9.NDOOB_JzUcIh4GWi4yAgDDCKTd07WYvg116UQeMNK3o
+
+###
+PUT http://localhost:4132/add/favorite/task/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5Y2VkMTljLWJlMjMtNDBjZS05MDQyLTRhYzE2YTdiMDEyMCIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzYzNzMxNTIzLCJleHAiOjE3NjQwOTE1MjN9.Vor_CR0Hfp06fQLT7vDxQidivoFOxKNg7pzl8RK2NfY
