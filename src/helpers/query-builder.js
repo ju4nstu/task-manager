@@ -1,7 +1,7 @@
 import db from "../config/db.js";
+import { error, Errors } from "./errors.js";
 
-
-const schemas = {
+export const schemas = {
   task: ['name', 'description', 'status'],
   note: ['name', 'description'],
   folder: ['name', 'parent_id'],
@@ -54,4 +54,18 @@ export async function CreateQuery(table, data, user) {
   const returned_id = insert.rows[0].id
   await db.raw(`INSERT INTO user_${table}(user_id, ${table}_id) VALUES (?, ?)`, [user.id, returned_id])
   
+}
+
+export async function IntoFolder() {
+  const table = req.params.itemTable
+  const item_ids = req.body
+  const folder_id = req.params.folderId
+    
+  if (!schemas[table]) return error(rep, Errors.INVALID_DATA)
+  if (!item_ids || !Array.isArray(item_ids)) return error(rep, Errors.INVALID_DATA)
+
+  const placeholders = item_ids.map(() => '(?, ?)').join(', ')  
+  const values = item_ids.flatMap(id => [id, folder_id])
+  console.log(values)
+  //await db.raw(`insert into folder_item(${table}_id, folder_id) VALUES (?, ?)`, values)
 }

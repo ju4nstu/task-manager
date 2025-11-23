@@ -32,3 +32,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNkNjNjMjM4L
 ###
 PUT http://localhost:4132/add/favorite/task/8
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5Y2VkMTljLWJlMjMtNDBjZS05MDQyLTRhYzE2YTdiMDEyMCIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzYzNzMxNTIzLCJleHAiOjE3NjQwOTE1MjN9.Vor_CR0Hfp06fQLT7vDxQidivoFOxKNg7pzl8RK2NfY
+
+
+###
+POST http://localhost:4132/add/to-folder/task/5
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5Y2VkMTljLWJlMjMtNDBjZS05MDQyLTRhYzE2YTdiMDEyMCIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzYzNzMxNTIzLCJleHAiOjE3NjQwOTE1MjN9.Vor_CR0Hfp06fQLT7vDxQidivoFOxKNg7pzl8RK2NfY
+
+{
+  "itemIds": [4]
+}
