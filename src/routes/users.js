@@ -68,4 +68,12 @@ export default async function userRoutes(server, opts) {
     `, [data.id, data.id])
     rep.code(200).send({ user: user.rows, tasks: tasks.rows, notes: notes.rows, folders: folders.rows, favorites: favorites.rows })
   })
+
+  server.get('/profile2', { preHandler: [server.authenticate, server.current_user] }, async (req, rep) => {
+    const data = await db.raw('select * from notes')
+    await db.raw('COMMIT')
+    return data.rows
+  })
+
+
 }

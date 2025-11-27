@@ -49,8 +49,9 @@ export async function CreateQuery(table, data, user) {
 
   const placeholder = column.map(() => '?').join(', ')
 
-  console.log(`INSERT INTO ${table}s(${column.join(', ')}) VALUES (${placeholder}) returning id`)
-  const insert = await db.raw(`INSERT INTO ${table}s(${column.join(', ')}) VALUES (${placeholder}) returning id`, [values])
+  // console.log(`INSERT INTO ${table}s(${column.join(', ')}) VALUES (${placeholder}) returning id`)
+  // console.log([...values])
+  const insert = await db.raw(`INSERT INTO ${table}s(${column.join(', ')}) VALUES (${placeholder}) returning id`, [...values])
   const returned_id = insert.rows[0].id
   await db.raw(`INSERT INTO user_${table}(user_id, ${table}_id) VALUES (?, ?)`, [user.id, returned_id])
   
