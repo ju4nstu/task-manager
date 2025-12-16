@@ -1,24 +1,24 @@
-POST http://localhost:4132/signup
+POST http://localhost:4132/api/signup
 Content-Type: application/json
 
 {
-  "name": "juan",
-  "email": "juan@gmail.com",
-  "password": "juan.dev"
+  "name": "user",
+  "email": "user@gmail.com",
+  "password": "user.dev"
 }
 ###
-POST http://localhost:4132/signin
+POST http://localhost:4132/api/signin
 Content-Type: application/json
 
 {
-  "name": "juan",
-  "email": "juan@gmail.com",
-  "password": "juan.dev"  
+  "name": "user",
+  "email": "user@gmail.com",
+  "password": "user.dev"  
 }
 ### 
-GET http://localhost:4132/profile
+GET http://localhost:4132/api/profile
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5Y2VkMTljLWJlMjMtNDBjZS05MDQyLTRhYzE2YTdiMDEyMCIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzYzNzMxNTIzLCJleHAiOjE3NjQwOTE1MjN9.Vor_CR0Hfp06fQLT7vDxQidivoFOxKNg7pzl8RK2NfY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5Y2VkMTljLWJlMjMtNDBjZS05MDQyLTRhYzE2YTdiMDEyMCIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzY0MjQ2NTM4LCJleHAiOjE3NjQ2MDY1Mzh9.g5SFTkSLJISYJXlmBXXP5dBTTy2_LGrNDOwKPjL28oY
 
 ### 
 GET http://localhost:4132/profile2

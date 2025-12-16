@@ -31,20 +31,19 @@ export async function UpdateQuery(table, data, elementID, rep) {
 
 
 export async function CreateQuery(table, data, user) {
-    
   if (!schemas[table]) return rep.code(400).send({ message: "invalid input" })
     
-  const column = []
-  const allowed_columns = schemas[table]
-  const values = []
-
-  for (const col of allowed_columns) {
-    if (data[col] !== undefined) {
-      column.push(col)
-      values.push(data[col])
-    }
+    const column = []
+    const allowed_columns = schemas[table]
+    const values = []
+    
+    for (const col of allowed_columns) {
+      if (data[col] !== undefined) {
+        column.push(col)
+        values.push(data[col])
+      }
   }
-
+  
   if (column.length === 0) return rep.code(400).send({ message: "no data provided" })
 
   const placeholder = column.map(() => '?').join(', ')
@@ -67,6 +66,5 @@ export async function IntoFolder() {
 
   const placeholders = item_ids.map(() => '(?, ?)').join(', ')  
   const values = item_ids.flatMap(id => [id, folder_id])
-  console.log(values)
   //await db.raw(`insert into folder_item(${table}_id, folder_id) VALUES (?, ?)`, values)
 }

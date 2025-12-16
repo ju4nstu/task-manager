@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Profile Content</title>
+</head>
+<body>
+    <section id="notes">
+      <h1 bold>Notes</h1>
+      <h2 bold>Add new note</h2>
+      
+      <label for="note-name"></label>
+      <input type="text" id="note-name" placeholder="note name"/>
+      
+      <label for="note-description"></label>
+      <input type="text" id="note-description" placeholder="note description"/>
+      <button onclick="AddItem('note')">Add</button>
+
+      <h2 bold>List of notes</h2>
+      <button onclick="fetchData('Notes')">fetch</button>
+      <div id="output"></div>
+      <hr>
+    </section>
+    
+    <section id="tasks">
+      <h1 bold>Tasks</h1>
+      <h2 bold>Add new task</h2>
+      
+      <label for="task-name"></label>
+      <input type="text" id="task-name" placeholder="task name"/>
+      
+      <label for="task-description"></label>
+      <input type="text" id="task-description" placeholder="task description"/>
+      <button onclick="AddItem('task')">Add</button>
+
+      <h2 bold>List of tasks</h2>
+      <button onclick="fetchData('Tasks')">fetch</button>
+      <div id="task-output"></div>
+      <hr>
+    </section>
+
+    <script src="front.js"></script>
+</body>
+</html>

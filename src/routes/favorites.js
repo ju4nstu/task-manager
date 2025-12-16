@@ -3,7 +3,7 @@ import { error, Errors } from "../helpers/errors.js"
 
 const schema = ['task', 'note']
 export default async function Favorite(server, opts) {  
-  server.put('/add/favorite/:itemType/:itemId', { preHandler: server.authenticate }, async (req, rep) => {
+  server.put('/api/add/favorite/:itemType/:itemId', { preHandler: server.authenticate }, async (req, rep) => {
     const { itemType, itemId } = req.params
 
     if (!schema.includes(itemType)) return error(rep, Errors.INVALID_DATA)

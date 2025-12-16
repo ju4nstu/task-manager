@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form id="signinForm">
+    
+    <h1>Sign-In</h1>
+    <label for="name">name</label>
+    <input id="name" type="text" placeholder="name"/>
+
+    <label for="email">Email</label>
+    <input id="email" type="email" placeholder="email"/>
+  
+    <label for="email">Password</label>
+    <input id="psswd" type="password" placeholder="password"/>
+    <button type="submit">Submit</button>
+
+  </form>
+  <button onclick="window.location.href = '/profile'">Profile</button>
+  <script>
+    document.getElementById("signinForm").addEventListener('submit', async (e) => {
+      e.preventDefault()
+      const name = document.getElementById('name').value
+      const psswd = document.getElementById('psswd').value
+      const email = document.getElementById('email').value
+      fetch('/api/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name: name, email: email, password: psswd })
+      })
+      .then(res => { console.log(res) })
+    })
+  </script>
+</body>
+</html>

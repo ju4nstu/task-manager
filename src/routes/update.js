@@ -1,7 +1,7 @@
 import { UpdateQuery}  from "../helpers/query-builder.js"
 
 export default function Update(server, opts) {
-  server.put('/update/:itemTable/:itemId', { preHandler: [server.authenticate] }, async (req, rep) => {
+  server.put('/api/update/:itemTable/:itemId', { preHandler: [server.authenticate] }, async (req, rep) => {
     const { itemTable, itemId } = req.params
     const data = req.body
  

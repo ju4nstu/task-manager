@@ -4,7 +4,7 @@ import { error, Errors } from "../helpers/errors.js"
 
 export default function Creation(server, opts) {
   
-  server.post('/create/:itemTable', { preHandler: server.authenticate }, async (req, rep) => {
+  server.post('/api/create/:itemTable', { preHandler: server.authenticate }, async (req, rep) => {
     const { itemTable } = req.params
     const data = req.body
 
@@ -12,7 +12,7 @@ export default function Creation(server, opts) {
     return rep.code(201).send({ message: `${itemTable} created succesfully` })
   })
 
-  server.post('/add/to-folder/:itemTable/:folderId', { preHandler: server.authenticate }, async (req, rep) => {
+  server.post('/api/add/to-folder/:itemTable/:folderId', { preHandler: server.authenticate }, async (req, rep) => {
     const table = req.params.itemTable
     const item_ids = req.body.itemIds
     const folder_id = Number(req.params.folderId)
@@ -22,7 +22,7 @@ export default function Creation(server, opts) {
 
     const placeholders = item_ids.map(() => '?, ?').join(', ')  
     const values = item_ids.flatMap(id => [id, folder_id])
-    console.log(values)
+
     await db.raw(`insert into folder_item(${table}_id, folder_id) VALUES(${placeholders})`, values)
     return rep.code(201).send({ message: 'success' })
   })

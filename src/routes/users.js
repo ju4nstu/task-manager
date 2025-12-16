@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 
 
 export default async function userRoutes(server, opts) {
-  server.post('/signup', async (req, rep) => {
+  server.post('/api/signup', async (req, rep) => {
     const data = req.body // name, email, password
 
     const user = await db.raw('select * from users where email = ?', [data.email])
@@ -16,9 +16,8 @@ export default async function userRoutes(server, opts) {
     return rep.code(201).send('user created')
   })
 
-  server.post('/signin', async (req, rep) => {
+  server.post('/api/signin', async (req, rep) => {
     const data = req.body
-
     const user = await db.raw('select password, name, id from users where email = ?', [data.email])
   
     if (user.rows.length === 0) return rep.code(401).send('wrong credentials')
@@ -36,7 +35,7 @@ export default async function userRoutes(server, opts) {
     return rep.code(200).send({ token: token, message: 'user logged in' })
   })
 
-  server.get('/profile', { preHandler: server.authenticate }, async (req, rep) => {
+  server.get('/api/profile', { preHandler: server.authenticate }, async (req, rep) => {
     const data = req.user // name, email, bio
     const user = await db.raw('select name, email, bio from users where id = ?', [data.id])
     // the user's profile containing profile picture, name, email, option to change password, his latest/favorite tasks and notes
@@ -69,11 +68,22 @@ export default async function userRoutes(server, opts) {
     rep.code(200).send({ user: user.rows, tasks: tasks.rows, notes: notes.rows, folders: folders.rows, favorites: favorites.rows })
   })
 
-  server.get('/profile2', { preHandler: [server.authenticate, server.current_user] }, async (req, rep) => {
-    const data = await db.raw('select * from notes')
-    await db.raw('COMMIT')
-    return data.rows
+  server.get('/profile', (req, rep) => {
+    rep.sendFile('profile.html')
   })
 
+  server.get('/profile2', { preHandler: server.authenticate }, async (req, rep) => {
+    try {
+      const trx = await db.transaction()
+      await trx.raw(`SET LOCAL app.current_user_id = '${req.user.id}'`)
+      const data = await trx('notes').select('*')
+      
+      await trx.commit()
+      //console.log(await trx.raw('select current_setting("app.current_user_id")'))
+    } catch (err) {
+      console.log(err)
+    }
+    return [...data]
+  })
 
 }
