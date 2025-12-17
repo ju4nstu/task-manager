@@ -72,18 +72,36 @@ export default async function userRoutes(server, opts) {
     rep.sendFile('profile.html')
   })
 
-  server.get('/profile2', { preHandler: server.authenticate }, async (req, rep) => {
-    try {
-      const trx = await db.transaction()
-      await trx.raw(`SET LOCAL app.current_user_id = '${req.user.id}'`)
-      const data = await trx('notes').select('*')
-      
-      await trx.commit()
-      //console.log(await trx.raw('select current_setting("app.current_user_id")'))
-    } catch (err) {
-      console.log(err)
-    }
-    return [...data]
+  server.get('/dashboard', (req, rep) => {
+    // this page will show all public notes in the website
+    // will work for a very simple application like this, but will need pagination for scalability
+    // might add filters
+  })
+
+  server.get("/dashboard/notes", async (req, rep) => {
+    const q = await db.raw(`
+      SELECT n.id, n.name, n.description, n.visibility, 
+      u.name AS user_name,
+      u.id AS user_id
+      FROM notes n
+      JOIN user_note un ON un.note_id = n.id
+      JOIN users u ON u.id = un.user_id
+      WHERE n.visibility = 'public'
+    `)
+    return rep.code(200).send({ content: q.rows })
+  })
+
+  server.get('/dashboard/tasks', async (req, rep) => {
+    const q = await db.raw(`
+      SELECT t.id, t.name, t.description, t.status, t.visibility,
+      u.name AS user_name,
+      u.id AS user_id
+      FROM tasks t
+      JOIN user_task ut ON ut.task_id = t.id
+      JOIN users u ON u.id = ut.user_id
+      WHERE t.visibility = 'public' 
+    `)
+    return rep.code(200).send({ content: q.rows })
   })
 
 }

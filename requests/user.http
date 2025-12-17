@@ -2,8 +2,8 @@ POST http://localhost:4132/api/signup
 Content-Type: application/json
 
 {
-  "name": "user",
-  "email": "user@gmail.com",
+  "name": "user2",
+  "email": "user2@gmail.com",
   "password": "user.dev"
 }
 ###
@@ -15,12 +15,23 @@ Content-Type: application/json
   "email": "user@gmail.com",
   "password": "user.dev"  
 }
+
 ### 
 GET http://localhost:4132/api/profile
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5Y2VkMTljLWJlMjMtNDBjZS05MDQyLTRhYzE2YTdiMDEyMCIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzY0MjQ2NTM4LCJleHAiOjE3NjQ2MDY1Mzh9.g5SFTkSLJISYJXlmBXXP5dBTTy2_LGrNDOwKPjL28oY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5Y2VkMTljLWJlMjMtNDBjZS05MDQyLTRhYzE2YTdiMDEyMCIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzY1OTAyOTA2LCJleHAiOjE3NjYyNjI5MDZ9.5PsqSsxIG-aF0zBORGMj-D4wlmp7knC2yQNqrvzdB8o
 
 ### 
 GET http://localhost:4132/profile2
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5Y2VkMTljLWJlMjMtNDBjZS05MDQyLTRhYzE2YTdiMDEyMCIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzY0MjQ2NTM4LCJleHAiOjE3NjQ2MDY1Mzh9.g5SFTkSLJISYJXlmBXXP5dBTTy2_LGrNDOwKPjL28oY
+
+###
+GET http://localhost:4132/dashboard/notes
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5Y2VkMTljLWJlMjMtNDBjZS05MDQyLTRhYzE2YTdiMDEyMCIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzY1OTAyOTA2LCJleHAiOjE3NjYyNjI5MDZ9.5PsqSsxIG-aF0zBORGMj-D4wlmp7knC2yQNqrvzdB8o
+
+###
+GET http://localhost:4132/dashboard/tasks
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5Y2VkMTljLWJlMjMtNDBjZS05MDQyLTRhYzE2YTdiMDEyMCIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzY1OTAyOTA2LCJleHAiOjE3NjYyNjI5MDZ9.5PsqSsxIG-aF0zBORGMj-D4wlmp7knC2yQNqrvzdB8o

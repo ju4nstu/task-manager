@@ -1,6 +1,9 @@
 import { CreateQuery, schemas } from "../helpers/query-builder.js"
 import db from "../config/db.js"
 import { error, Errors } from "../helpers/errors.js"
+import { IntoACL } from "../helpers/query-builder.js"
+import { UpdateACL } from "../helpers/query-builder.js"
+import { CheckOwnership } from "../helpers/query-builder.js"
 
 export default function Creation(server, opts) {
   
@@ -27,4 +30,16 @@ export default function Creation(server, opts) {
     return rep.code(201).send({ message: 'success' })
   })
   
+  server.post('/api/add/:user/:item/:itemid', { preHandler: server.authenticate }, async (req, rep) => {
+    await CheckOwnership(req.params, req.user)
+    await IntoACL(req.params, req.body)
+    return rep.code(201).send({ message: "user added" })
+  })
+  
+  server.post('/api/update/:user/:item/:itemid', { preHandler: server.authenticate }, async (req, rep) => {
+    await CheckOwnership(req.params, req.user, rep)
+    await UpdateACL(req.params, req.body)
+    return rep.code(201).send({ message: "user update" })
+  })
+
 }

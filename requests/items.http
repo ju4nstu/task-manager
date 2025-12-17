@@ -2,22 +2,22 @@
 POST http://localhost:4132/api/create/note
 #POST http://localhost:4132/create/itemType
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5Y2VkMTljLWJlMjMtNDBjZS05MDQyLTRhYzE2YTdiMDEyMCIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzY0MjQ2NTM4LCJleHAiOjE3NjQ2MDY1Mzh9.g5SFTkSLJISYJXlmBXXP5dBTTy2_LGrNDOwKPjL28oY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5Y2VkMTljLWJlMjMtNDBjZS05MDQyLTRhYzE2YTdiMDEyMCIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzY1OTAyOTA2LCJleHAiOjE3NjYyNjI5MDZ9.5PsqSsxIG-aF0zBORGMj-D4wlmp7knC2yQNqrvzdB8o
 
 {
-  "name": "new",
+  "name": "this is a new note",
   "description": "new"
 }
 
 
 ### 
-PUT http://localhost:4132/api/update/folder/4 
+PUT http://localhost:4132/api/update/task/4 
 # PUT http://localhost:4132/update/itemTable/itemId
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5Y2VkMTljLWJlMjMtNDBjZS05MDQyLTRhYzE2YTdiMDEyMCIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzYzNzMxNTIzLCJleHAiOjE3NjQwOTE1MjN9.Vor_CR0Hfp06fQLT7vDxQidivoFOxKNg7pzl8RK2NfY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5Y2VkMTljLWJlMjMtNDBjZS05MDQyLTRhYzE2YTdiMDEyMCIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzY1OTAyOTA2LCJleHAiOjE3NjYyNjI5MDZ9.5PsqSsxIG-aF0zBORGMj-D4wlmp7knC2yQNqrvzdB8o
 
 {
-  "name": "This is a cool folder"
+  "visibility": "public"
 }
 
 #task -> name, desc, status
@@ -41,4 +41,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5Y2VkMTljL
 
 {
   "itemIds": [4]
+}
+
+###
+POST http://localhost:4132/api/add/ea3ce064-dff6-4016-a1d0-005bee72a131/note/11
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5Y2VkMTljLWJlMjMtNDBjZS05MDQyLTRhYzE2YTdiMDEyMCIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzY1OTAyOTA2LCJleHAiOjE3NjYyNjI5MDZ9.5PsqSsxIG-aF0zBORGMj-D4wlmp7knC2yQNqrvzdB8o
+
+{
+  "role": "viewer" 
+}
+###
+POST http://localhost:4132/api/update/ea3ce064-dff6-4016-a1d0-005bee72a131/note/11
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5Y2VkMTljLWJlMjMtNDBjZS05MDQyLTRhYzE2YTdiMDEyMCIsIm5hbWUiOiJqdWFuIiwiaWF0IjoxNzY1OTAyOTA2LCJleHAiOjE3NjYyNjI5MDZ9.5PsqSsxIG-aF0zBORGMj-D4wlmp7knC2yQNqrvzdB8o
+
+{
+  "role": "viewer" 
 }

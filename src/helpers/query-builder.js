@@ -2,9 +2,9 @@ import db from "../config/db.js";
 import { error, Errors } from "./errors.js";
 
 export const schemas = {
-  task: ['name', 'description', 'status'],
-  note: ['name', 'description'],
-  folder: ['name', 'parent_id'],
+  task: ['name', 'description', 'status', 'visibility'],
+  note: ['name', 'description', 'visibility'],
+  folder: ['name', 'parent_id', 'visibility'],
 }
 
 
@@ -53,6 +53,7 @@ export async function CreateQuery(table, data, user) {
   const insert = await db.raw(`INSERT INTO ${table}s(${column.join(', ')}) VALUES (${placeholder}) returning id`, [...values])
   const returned_id = insert.rows[0].id
   await db.raw(`INSERT INTO user_${table}(user_id, ${table}_id) VALUES (?, ?)`, [user.id, returned_id])
+  await db.raw(`INSERT INTO access_ctrl_list(${table}_id, user_id, role) VALUES (?, ?, ?)`, [returned_id, user.id, 'owner'])
   
 }
 
@@ -67,4 +68,20 @@ export async function IntoFolder() {
   const placeholders = item_ids.map(() => '(?, ?)').join(', ')  
   const values = item_ids.flatMap(id => [id, folder_id])
   //await db.raw(`insert into folder_item(${table}_id, folder_id) VALUES (?, ?)`, values)
+}
+
+export async function IntoACL(table, data) {
+  await db.raw(`INSERT INTO access_ctrl_list(${table.item}_id, user_id, role) VALUES (?, ?, ?)`, [table.itemid, table.user, data.role])
+}
+
+export async function UpdateACL(table, data) {
+  await db.raw(`UPDATE access_ctrl_list SET role = ? WHERE ${table.item}_id = ? AND user_id = ?`, [data.role, table.itemid, table.user])
+}
+
+export async function CheckOwnership(table, user, rep) {
+  // preciso ver se o usuario é dono dessa task em especifico
+  const q = await db.raw(`SELECT role FROM access_ctrl_list WHERE user_id = ? AND ${table.item}_id = ?`, [user.id, table.itemid])
+  console.log(q.rows[0])
+  if (q.length === 0) return rep.code(401).send({ message: 'unauthorized' })
+  if (q.rows[0].role !== 'owner') return rep.code(401).send({ message: 'unauthorized' })
 }
